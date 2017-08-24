@@ -1,0 +1,50 @@
+0,HOLA ^,*,*,Hola#Comma que quieres hacer (preguntar o jugar)?,Preguntas.aiml
+0,*,*,*,<think><set var="opcion"><star/></set></think>#Newline            <condition var="opcion">#Newline                <li value="preguntar">Pues preguntame sobre <set name="topic">ia</set>.</li>#Newline                <li value="jugar">Pues vamos a <set name="topic">jugar</set>. Quien pregunta?</li>#Newline                <li>Eso no es una opcion.</li>#Newline            </condition>,Preguntas.aiml
+0,* APRUEBO IA,*,IA,Sacando un 5 en la media de Teoria y Practicas.,Preguntas.aiml
+0,^ APROBAR LA TEORIA,*,IA,Teniendo almenos un 5 en la suma de la nota del examen final y la de las pruebas parciales.,Preguntas.aiml
+0,^ SUPERAR LA ^ PRACTICA,*,IA,Teniendo almenos un 5 en la suma de las 3 practicas y el examen de problemas.,Preguntas.aiml
+0,COMO SE EVALUA EN LA CONVOCATORIA DE JUNIO,*,IA,Un examen teorico y examen de problemas.,Preguntas.aiml
+0,^ PRESENTARME EN LA CONVOCATORIA DE SEPTIEMBRE,*,IA,Solo habra un unico examen escrito de teoria y practicas.,Preguntas.aiml
+0,HAY EXAMEN DE PRACTICAS EN LA CONVOCATORIA DE SEPTIEMBRE,*,IA,<srai>^ PRESENTARME EN LA CONVOCATORIA DE SEPTIEMBRE</srai>,Preguntas.aiml
+0,QUE PASA SI NO PUEDO ASISTIR A CLASE REGULARMENTE,*,IA,Una vez justificados los motivos#Comma podra acogerse a una evaluacion unico que consta de un unico examen final evaluado sobre 10.,Preguntas.aiml
+0,^ NOTA MINIMA ^,*,IA,La nota minima es un 5.,Preguntas.aiml
+0,LAS PRACTICAS SON OBLIGATORIAS,*,IA,Si#Comma necesitas sacar al menos un 3.,Preguntas.aiml
+0,^ CADA PRACTICA ^ FINAL,*,IA,un 12.5%.,Preguntas.aiml
+0,^ PARTICIPACION ^ FINAL,*,IA,Un 5%.,Preguntas.aiml
+0,^ GUION DE PRACTICAS ^ FINAL,*,IA,<srai>^ CADA PRACTICA ^ FINAL</srai>,Preguntas.aiml
+0,^ PUNTOS POR PARTICIPACION,*,IA,Participando.,Preguntas.aiml
+0,^ MINIMO ^ APROBAR LA ASIGNATURA,*,IA,^ NOTA MINIMA ^,Preguntas.aiml
+0,LOS TRABAJOS SON INDIVIDUALES,*,IA,En ese caso debera presentarse a la convocatoria de septiembre.,Preguntas.aiml
+0,SE PUEDEN HACER LOS TRABAJOS EN GRUPO,*,IA,<srai>LOS TRABAJOS SON INDIVIDUALES</srai>,Preguntas.aiml
+0,^ ENTREGAR ^ RELACIONES DE PROBLEMAS,*,IA,No es obligatorio.,Preguntas.aiml
+0,POR QUE TENGO QUE ESTUDIAR,*,IA,Pa ke quieres saber eso jaja saludos.,Preguntas.aiml
+0,^ PRIMER EXAMEN DE TEORIA,*,IA,0.5 puntos.,Preguntas.aiml
+0,^ NOTA MAYOR A 10,*,IA,10 es la nota maxima.,Preguntas.aiml
+0,PUEDO RECUPERAR UNA PRACTICA O EXAMEN,*,IA,No#Comma por que no nos dejan.,Preguntas.aiml
+0,QUE * SI ME COPIO ^,*,IA,<srai>LOS TRABAJOS SON INDIVIDUALES</srai>,Preguntas.aiml
+0,QUE * SI ME DEJO COPIAR ^,*,IA,LOS TRABAJOS SON INDIVIDUALES,Preguntas.aiml
+0,* SUSPENDO ^ JUNIO,*,IA,LOS TRABAJOS SON INDIVIDUALES,Preguntas.aiml
+0,CUANTO VALE LA PRACTICA Y LA TEORIA,*,IA,5 puntos cada una.,Preguntas.aiml
+0,^ HORARIO DE TUTORIA * PROFESOR DE PRACTICAS,*,IA,El horario de Rocio Romero:#Newline#Newline                Lunes de 11:30 a 13:30(ETSII)#Newline                Miercoles de 15:30 a 18:30(CIENCIAS)#Newline                Viernes de 17:30 a 18:30(ETSII),Preguntas.aiml
+0,^ CORREO * TEORIA,*,IA,faro@decsai.ugr.es,Preguntas.aiml
+0,^ APROBAR ^ PRACTICA ^ SI NO PRESENTO UNA PRACTICA,*,IA,Si#Comma pero solo podras optar al 87.5% de la nota final.,Preguntas.aiml
+0,^ NOTA MINIMA * MEDIA,*,IA,Para hacer media la nota minima es 3.,Preguntas.aiml
+0,^ PRACTICA 1 ^ NIVEL 3 ^ NO LO SUPERO,*,IA,80%,Preguntas.aiml
+0,^ PRACTICA 1 SIN HACER LA TAREA ^ NIVEL 0,*,IA,No#Comma en ese caso tu nota sera 0.,Preguntas.aiml
+0,^ NO PUEDO ASISTIR * DEFENSA ^,*,IA,Suspenso.,Preguntas.aiml
+0,CUANTAS PRUEBAS TEORICAS ^,*,IA,Son 3.,Preguntas.aiml
+0,* VALE LA PRIMERA PRUEBA TEORICA,*,IA,0.5 puntos.,Preguntas.aiml
+0,* TEORIA ^ ASISTENCIA,*,IA,En la teoria no cuenta la asistencia,Preguntas.aiml
+0,* EXAMEN DE EJERCICIOS,*,IA,Resolver problemas de los explicados en las practicas realizadas.,Preguntas.aiml
+0,* DEFENDER ^ PRACTICA,*,IA,La nota de la practica sera un 0.,Preguntas.aiml
+0,* NO ESTOY SEGURO * NIVEL 3 ^,*,IA,Deberias optar por el nivel 2.,Preguntas.aiml
+0,CUANTAS PRACTICAS ENTREGABLES ^,*,IA,<srai>CUANTAS PRUEBAS TEORICAS ^</srai>,Preguntas.aiml
+0,* LENGUAJE,*,IA,El lenguaje sera el que se indique en cada practica.,Preguntas.aiml
+0,* PROFESOR DE PRACTICAS,*,IA,Facultad de Ciencias (M2).,Preguntas.aiml
+0,* PROFESOR DE TEORIA,*,IA,ETSIIT (D24).,Preguntas.aiml
+0,* PUNTOS EN LAS PRACTICAS * APROBAR ^,*,IA,Se necesitan al menos 22.22 puntos para aprobar.,Preguntas.aiml
+0,^ NO PUEDE HACER LA PRACTICA * ESA PRACTICA,*,IA,No puedes.,Preguntas.aiml
+0,^ NO PUEDE HACER LA PRACTICA * PARTE PRACTICA,*,IA,Si puedes#Comma aprobando las demas.,Preguntas.aiml
+0,AGENTES CONVERSACIONALES * DEFENSA,*,IA,Si te ves capaz#Comma adelante!,Preguntas.aiml
+0,EN LAS SIGUIENTES PRACTICAS HAY TAMBIEN QUE PROGRAMAR,*,IA,Si.,Preguntas.aiml
+0,^ EL RESTO DE LA PRACTICA SE ^,*,IA,Un poquito na' mas.,Preguntas.aiml

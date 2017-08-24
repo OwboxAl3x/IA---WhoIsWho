@@ -1,0 +1,422 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <!-- INICIO -->
+    <category>
+
+        <pattern>Hola ^</pattern>
+        <template>Hola, que quieres hacer (preguntar o jugar)?</template>
+
+    </category>
+
+    <category>
+
+        <pattern>*</pattern>
+        <template>
+            <think><set var="opcion"><star/></set></think>
+            <condition var="opcion">
+                <li value="preguntar">Pues preguntame sobre <set name="topic">ia</set>.</li>
+                <li value="jugar">Pues vamos a <set name="topic">jugar</set>. Quien pregunta?</li>
+                <li>Eso no es una opcion.</li>
+            </condition>
+        </template>
+
+    </category>
+
+    <topic name="ia">
+
+    <!-- Pregunta 1 -->
+    <category>
+
+        <pattern>* apruebo IA</pattern>
+        <template>Sacando un 5 en la media de Teoria y Practicas.</template>
+
+    </category>
+
+    <!-- Pregunta 2 -->
+    <category>
+
+        <pattern>^ aprobar la teoria</pattern>
+        <template>Teniendo almenos un 5 en la suma de la nota del examen final y la de las pruebas parciales.</template>
+
+    </category>
+
+    <!-- Pregunta 3 -->
+    <category>
+
+        <pattern>^ superar la ^ practica</pattern>
+        <template>Teniendo almenos un 5 en la suma de las 3 practicas y el examen de problemas.</template>
+
+    </category>
+
+    <!-- Pregunta 4 -->
+    <category>
+
+        <pattern>Como se evalua en la convocatoria de Junio</pattern>
+        <template>Un examen teorico y examen de problemas.</template>
+
+    </category>
+
+    <!-- Pregunta 5 -->
+    <category>
+
+        <pattern>^ presentarme en la convocatoria de septiembre</pattern>
+        <template>Solo habra un unico examen escrito de teoria y practicas.</template>
+
+    </category>
+
+    <!-- Pregunta 6 -->
+    <category>
+
+        <pattern>Hay examen de practicas en la convocatoria de septiembre</pattern>
+        <template><srai>^ PRESENTARME EN LA CONVOCATORIA DE SEPTIEMBRE</srai></template>
+
+    </category>
+
+    <!-- Prengunta 7 -->
+    <category>
+
+        <pattern>Que pasa si no puedo asistir a clase regularmente</pattern>
+        <template>Una vez justificados los motivos, podra acogerse a una evaluacion unico que consta de un unico examen final evaluado sobre 10.</template>
+
+    </category>
+
+    <!-- Pregunta 8 -->
+    <category>
+
+        <pattern>^ nota minima ^</pattern>
+        <template>La nota minima es un 5.</template>
+
+    </category>
+
+    <!-- Pregunta 9 -->
+    <category>
+
+        <pattern>Las practicas son obligatorias</pattern>
+        <template>Si, necesitas sacar al menos un 3.</template>
+
+    </category>
+
+    <!-- Pregunta 10 -->
+    <category>
+
+        <pattern>^ cada practica ^ final</pattern>
+        <template>un 12.5%.</template>
+
+    </category>
+
+    <!-- Pregunta 11 -->
+    <category>
+
+        <pattern>^ participacion ^ final</pattern>
+        <template>Un 5%.</template>
+
+    </category>
+
+    <!-- Pregunta 12 -->
+    <category>
+
+        <pattern>^ guion de practicas ^ final</pattern>
+        <template><srai>^ CADA PRACTICA ^ FINAL</srai></template>
+
+    </category>
+
+    <!-- Pregunta 13 -->
+    <category>
+
+        <pattern>^ puntos por participacion</pattern>
+        <template>Participando.</template>
+
+    </category>
+
+    <!-- Pregunta 14 -->
+    <category>
+
+        <pattern>^ minimo ^ aprobar la asignatura</pattern>
+        <template>^ NOTA MINIMA ^</template>
+
+    </category>
+
+    <!-- Pregunta 15 -->
+    <category>
+
+        <pattern>Los trabajos son individuales</pattern>
+        <template>En ese caso debera presentarse a la convocatoria de septiembre.</template>
+
+    </category>
+
+    <!-- Pregunta 16 -->
+    <category>
+
+        <pattern>Se pueden hacer los trabajos en grupo</pattern>
+        <template><srai>LOS TRABAJOS SON INDIVIDUALES</srai></template>
+
+    </category>
+
+    <!-- Pregunta 17 -->
+    <category>
+
+        <pattern>^ entregar ^ relaciones de problemas</pattern>
+        <template>No es obligatorio.</template>
+
+    </category>
+
+    <!-- Pregunta 18 -->
+    <category>
+
+        <pattern>Por que tengo que estudiar</pattern>
+        <template>Pa ke quieres saber eso jaja saludos.</template>
+
+    </category>
+
+    <!-- Pregunta 19 -->
+    <category>
+
+        <pattern>^ primer examen de teoria</pattern>
+        <template>0.5 puntos.</template>
+
+    </category>
+
+    <!-- Pregunta 20 -->
+    <category>
+
+        <pattern>^ nota mayor a 10</pattern>
+        <template>10 es la nota maxima.</template>
+
+    </category>
+
+    <!-- Pregunta 21 -->
+    <category>
+
+        <pattern>Puedo recuperar una practica o examen</pattern>
+        <template>No, por que no nos dejan.</template>
+
+    </category>
+
+    <!-- Pregunta 22 -->
+    <category>
+
+        <pattern>Que * si me copio ^</pattern>
+        <template><srai>LOS TRABAJOS SON INDIVIDUALES</srai></template>
+
+    </category>
+
+    <!-- Pregunta 23 -->
+    <category>
+
+        <pattern>Que * si me dejo copiar ^</pattern>
+        <template>LOS TRABAJOS SON INDIVIDUALES</template>
+
+    </category>
+
+    <!-- Pregunta 24 -->
+    <category>
+
+        <pattern>* suspendo ^ junio</pattern>
+        <template>LOS TRABAJOS SON INDIVIDUALES</template>
+
+    </category>
+
+    <!-- Pregunta 25 -->
+    <category>
+
+        <pattern>Cuanto vale la practica y la teoria</pattern>
+        <template>5 puntos cada una.</template>
+
+    </category>
+
+    <!-- Pregunta 26 -->
+    <category>
+
+        <pattern>^ horario de tutoria * profesor de practicas</pattern>
+        <template>
+
+            El horario de Rocio Romero:
+
+                Lunes de 11:30 a 13:30(ETSII)
+                Miercoles de 15:30 a 18:30(CIENCIAS)
+                Viernes de 17:30 a 18:30(ETSII)
+
+        </template>
+
+    </category>
+
+    <!-- Pregunta 27 -->
+    <category>
+
+        <pattern>^ correo * teoria</pattern>
+        <template>faro@decsai.ugr.es</template>
+
+    </category>
+
+    <!-- Pregunta 28 -->
+    <category>
+
+        <pattern>^ aprobar ^ practica ^ si no presento una practica</pattern>
+        <template>Si, pero solo podras optar al 87.5% de la nota final.</template>
+
+    </category>
+
+    <!-- Pregunta 29 -->
+    <category>
+
+        <pattern>^ nota minima * media</pattern>
+        <template>Para hacer media la nota minima es 3.</template>
+
+    </category>
+
+    <!-- Pregunta 30 -->
+    <category>
+
+        <pattern>^ practica 1 ^ nivel 3 ^ no lo supero</pattern>
+        <template>80%</template>
+
+    </category>
+
+    <!-- Pregunta 31 -->
+    <category>
+
+        <pattern>^ practica 1 sin hacer la tarea ^ nivel 0</pattern>
+        <template>No, en ese caso tu nota sera 0.</template>
+
+    </category>
+
+    <!-- pregunta 32 -->
+    <category>
+
+        <pattern>^ no puedo asistir * defensa ^</pattern>
+        <template>Suspenso.</template>
+
+    </category>
+
+    <!-- Pregunta 33 -->
+    <category>
+
+        <pattern>Cuantas pruebas teoricas ^</pattern>
+        <template>Son 3.</template>
+
+    </category>
+
+    <!-- Pregunta 34 -->
+    <category>
+
+        <pattern>* vale la primera prueba teorica</pattern>
+        <template>0.5 puntos.</template>
+
+    </category>
+
+    <!-- Pregunta 35 -->
+    <category>
+
+        <pattern>* teoria ^ asistencia</pattern>
+        <template>En la teoria no cuenta la asistencia</template>
+
+    </category>
+
+    <!-- Pregunta 36 -->
+    <category>
+
+        <pattern>* examen de ejercicios</pattern>
+        <template>Resolver problemas de los explicados en las practicas realizadas.</template>
+
+    </category>
+
+    <!-- Pregunta 37 -->
+    <category>
+
+        <pattern>* defender ^ practica</pattern>
+        <template>La nota de la practica sera un 0.</template>
+
+    </category>
+
+    <!-- Pregunta 38 -->
+    <category>
+
+        <pattern>* no estoy seguro * nivel 3 ^</pattern>
+        <template>Deberias optar por el nivel 2.</template>
+
+    </category>
+
+    <!-- Pregunta 39 -->
+    <category>
+
+        <pattern>cuantas practicas entregables ^</pattern>
+        <template><srai>CUANTAS PRUEBAS TEORICAS ^</srai></template>
+
+    </category>
+
+    <!-- Preguntas 40 y 41-->
+    <category>
+
+        <pattern>* lenguaje</pattern>
+        <template>El lenguaje sera el que se indique en cada practica.</template>
+
+    </category>
+
+    <!-- Pregunta 42 -->
+    <category>
+
+        <pattern>* profesor de practicas</pattern>
+        <template>Facultad de Ciencias (M2).</template>
+
+    </category>
+
+    <!-- Pregunta 43 -->
+    <category>
+
+        <pattern>* profesor de teoria</pattern>
+        <template>ETSIIT (D24).</template>
+
+    </category>
+
+    <!-- Preguntas 44 y 45 -->
+    <category>
+
+        <pattern>* puntos en las practicas * aprobar ^</pattern>
+        <template>Se necesitan al menos 22.22 puntos para aprobar.</template>
+
+    </category>
+
+    <!-- Pregunta 46 -->
+    <category>
+
+        <pattern>^ no puede hacer la practica * esa practica</pattern>
+        <template>No puedes.</template>
+
+    </category>
+
+    <!-- Pregunta 47 -->
+    <category>
+
+        <pattern>^ no puede hacer la practica * parte practica</pattern>
+        <template>Si puedes, aprobando las demas.</template>
+
+    </category>
+
+    <!-- Pregunta 48 -->
+    <category>
+
+        <pattern>agentes conversacionales * defensa</pattern>
+        <template>Si te ves capaz, adelante!</template>
+
+    </category>
+
+    <!-- Pregunta 49 -->
+    <category>
+
+        <pattern>En las siguientes practicas hay tambien que programar</pattern>
+        <template>Si.</template>
+
+    </category>
+
+    <!-- Pregunta 50 -->
+    <category>
+
+        <pattern>^ el resto de la practica se ^</pattern>
+        <template>Un poquito na' mas.</template>
+
+    </category>
+
+    </topic>
+
+</aiml>

@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml version="2.0">
+
+    <topic name="jugar">
+
+        <!-- QUIEN PREGUNTA -->
+        <category>
+
+            <pattern>*</pattern>
+            <template>
+                <think><set var="quien"><star/></set></think>
+                <condition var="quien">
+                    <li value="yo">
+                        Ya he pensado <set name="topic">yo</set> en un personaje, preguntame.
+                        <think>
+
+                            <random>
+
+                                <li><set name="elegida">Alejandro</set></li>
+                                <li><set name="elegida">Alfonso</set></li>
+                                <li><set name="elegida">Antonio</set></li>
+                                <li><set name="elegida">Cristina</set></li>
+                                <li><set name="elegida">Gabriela</set></li>
+                                <li><set name="elegida">Ivan</set></li>
+                                <li><set name="elegida">Javier</set></li>
+                                <li><set name="elegida">Juan</set></li>
+                                <li><set name="elegida">Laura</set></li>
+                                <li><set name="elegida">Luis</set></li>
+                                <li><set name="elegida">Marco</set></li>
+                                <li><set name="elegida">Maria</set></li>
+                                <li><set name="elegida">Paco</set></li>
+                                <li><set name="elegida">Pepe</set></li>
+                                <li><set name="elegida">Sofia</set></li>
+                                <li><set name="elegida">Sonia</set></li>
+
+                            </random>
+
+                            <set name="supelo"><map name="Pelo"><get name="elegida"/></map></set>
+                            <set name="susojos"><map name="Ojos"><get name="elegida"/></map></set>
+                            <set name="supiel"><map name="Piel"><get name="elegida"/></map></set>
+                            <set name="susgafas"><map name="Gafas"><get name="elegida"/></map></set>
+                            <set name="subigote"><map name="Bigote"><get name="elegida"/></map></set>
+                            <set name="subarba"><map name="Barba"><get name="elegida"/></map></set>
+                            <set name="sugenero"><map name="Genero"><get name="elegida"/></map></set>
+
+                        </think>
+
+                    </li>
+                    <li value="tu">
+                        Pues piensa <set name="topic">tu</set> en un personaje que vamos al lio.
+                        <think><set name="personajes">Alejandro Alfonso Antonio Cristina Gabriela Ivan Javier Juan Laura Luis Marco Maria Paco Pepe Sofia Sonia end</set></think>
+                    </li>
+                    <li>Eso no es una opcion.</li>
+                </condition>
+            </template>
+
+        </category>
+
+    </topic>
+
+    <topic name="yo">
+
+        <!-- Pregunta Pelos -->
+        <category>
+
+            <pattern>^ <set>colorpelo</set></pattern>
+            <template>
+                    <condition name="supelo">
+
+                        <li><value><star index="2"/></value> Si, sigue asi!</li>
+                        <li>No, vuelve a probar.</li>
+
+                    </condition>
+            </template>
+
+        </category>
+
+        <!-- Pregunta Genero -->
+        <category>
+
+            <pattern>^ <set>quegenero</set></pattern>
+            <template>
+
+                <condition name="sugenero">
+
+                    <li><value><star index="2"/></value> Si, sigue asi!</li>
+                    <li>No, vuelve a probar.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Ojos -->
+        <category>
+
+            <pattern>^ ojos *</pattern>
+            <template>
+
+                <condition name="susojos">
+
+                    <li><value><star index="2"/></value> Si, bonito tono de ojos.</li>
+                    <li>No, vuelve a probar.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Gafas -->
+        <category>
+
+            <pattern>^ gafas</pattern>
+            <template>
+
+                <condition name="susgafas">
+
+                    <li value="si"> Si!</li>
+                    <li>No, su vista esta perfecta.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Bigote -->
+        <category>
+
+            <pattern>^ bigote</pattern>
+            <template>
+
+                <condition name="subigote">
+
+                    <li value="si"> Si!</li>
+                    <li>No, se afeita el bigote cada dia.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Barba -->
+        <category>
+
+            <pattern>^ barba</pattern>
+            <template>
+
+                <condition name="subarba">
+
+                    <li value="si"> Si, al parecer es la moda.</li>
+                    <li>No, se afeita la barba cada dia.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Personaje -->
+        <category>
+
+            <pattern>Es <set>personajes</set></pattern>
+            <template>
+
+                <condition name="elegida">
+
+                    <li><value><star/></value> Si, has ganado!</li>
+                    <li>No, sigue preguntando.</li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+        <!-- Pregunta Erronea -->
+        <category>
+
+            <pattern>^</pattern>
+            <template>
+
+                Esa no es una caracteristica.
+
+            </template>
+
+        </category>
+
+
+    </topic>
+
+    <topic name="tu">
+
+        <!-- Empezando -->
+        <category>
+
+            <pattern>^ ya ^</pattern>
+            <template>Es hombre?</template>
+
+        </category>
+
+        <!-- Es hombre? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>ES HOMBRE</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Cristina IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Gabriela IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Laura IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Maria IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Sofia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Sonia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="genero">hombre</set>
+
+                        </think>
+
+                        Hombre de ojos claros?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Alejandro IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Alfonso IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Antonio IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Ivan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Javier IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Juan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Luis IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Marco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Paco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Pepe IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="genero">mujer</set>
+
+                        </think>
+
+                        Mujer de ojos claros?
+
+                    </li>
+
+                </condition>
+
+                <think>
+
+                    <set name="preguntas">end</set>
+                    <set name="preguntas"><srai>ADDITEM <get name="genero"/> IN <get name="preguntas"/></srai></set>
+
+                </think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene los ojos claros? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>HOMBRE DE OJOS CLAROS</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Antonio IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Javier IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Alejandro IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Juan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Pepe IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="ojos">ojos_claros</set>
+
+                        </think>
+
+                        Tiene barba?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Alfonso IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Ivan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Luis IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Marco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Paco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="ojos">ojos_oscuros</set>
+
+                        </think>
+
+                        Hombre de pelo moreno?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="ojos"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene barba? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE BARBA</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Marco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Ivan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Paco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="barba">barbudo</set>
+
+                        </think>
+
+                        Tiene este hombre el pelo pelirrojo?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Alfonso IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Luis IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="barba">imberbe</set>
+
+                        </think>
+
+                        Es calvo?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="barba"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Hombre de pelo moreno? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>HOMBRE DE PELO MORENO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Juan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Pepe IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_moreno</set>
+
+                        </think>
+
+                        Y tiene bigote?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Antonio IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Javier IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Alejandro IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_no_moreno</set>
+
+                        </think>
+
+                        Hombre de piel oscura?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene este hombre el pelo pelirrojo? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE ESTE HOMBRE EL PELO PELIRROJO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Alfonso IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_pelirrojo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Luis IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_no_pelirrojo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Es calvo? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>ES CALVO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Ivan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Paco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">calvo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Marco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">no_calvo</set>
+
+                        </think>
+
+                        Tiene bigote?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene bigote? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE BIGOTE</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Paco IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="bigote">bigote</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Ivan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="bigote">no_bigote</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="bigote"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Y tiene bigote? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>Y TIENE BIGOTE</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Alejandro IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="bigote">bigote</set>
+
+                        </think>
+
+                        Y tiene barba?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Antonio IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Javier IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="bigote">no_bigote</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="bigote"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Y tiene barba? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>Y TIENE BARBA</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Javier IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="barba">barbudo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Antonio IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="barba">imberbe</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="barba"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Hombre de piel oscura? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>HOMBRE DE PIEL OSCURA</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Pepe IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="piel">piel_oscura</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Juan IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="piel">piel_clara</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="piel"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Mujer de ojos claros? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>MUJER DE OJOS CLAROS</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Sofia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Maria IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="ojos">ojos_claros</set>
+
+                        </think>
+
+                        Tiene el pelo moreno?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Cristina IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Gabriela IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Laura IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Sonia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="ojos">ojos_oscuros</set>
+
+                        </think>
+
+                        Tiene el pelo pelirrojo?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="ojos"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene el pelo moreno? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE EL PELO MORENO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Gabriela IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Laura IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_moreno</set>
+
+                        </think>
+
+                        Tiene la piel oscura?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Cristina IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+                            <set var="pos"><srai>FINDITEM Sonia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">no_pelo_moreno</set>
+
+                        </think>
+
+                        Tiene el pelo blanco?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene la piel oscura? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE LA PIEL OSCURA</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Cristina IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="piel">piel_oscura</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Sonia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="piel">piel_clara</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="piel"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene el pelo blanco? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE EL PELO BLANCO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Laura IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_blanco</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Gabriela IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_ni_moreno_ni_blanco</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>REMAIN <get name="preguntas"/></srai></set></think>
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- Tiene el pelo pelirrojo? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>TIENE EL PELO PELIRROJO</that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Sofia IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_pelirrojo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+                    <li>
+
+                        <think>
+
+                            <set var="pos"><srai>FINDITEM Maria IN <get name="personajes"/></srai></set>
+                            <set name="personajes"><srai>REMOVEITEM <get var="pos"/> IN <get name="personajes"/></srai></set>
+
+                            <set name="pelo">pelo_no_pelirrojo</set>
+
+                        </think>
+
+                        El personaje es <srai>TOP <get name="personajes"/></srai>?
+
+                    </li>
+
+                </condition>
+
+                <think><set name="preguntas"><srai>ADDITEM <get name="pelo"/> IN <get name="preguntas"/></srai></set></think>
+
+            </template>
+
+        </category>
+
+        <!-- El personaje es ...? -->
+        <category>
+
+            <pattern>*</pattern>
+            <that>EL PERSONAJE ES <set>personajes</set></that>
+            <template>
+
+                <think><set var="cnt"><star/></set></think>
+
+                <condition var="cnt">
+
+                    <li value="si">
+
+                        He ganado!! Viva el vino!
+
+                    </li>
+                    <li>
+
+                        Osea que me has timado, porque me dijiste que sus caracteristicas son:
+
+                        <think><set var="carac"><srai>TOP <get name="preguntas"/></srai></set></think>
+                        <condition var="carac">
+
+                            <li><value>end</value></li>
+                            <li>
+                                <get var="carac"/>
+                                <think>
+
+                                    <set name="preguntas"><srai>REMAIN <get name="preguntas"/></srai></set>
+                                    <set var="carac"><srai>TOP <get name="preguntas"/></srai></set>
+
+                                </think>
+                                <loop/>
+                            </li>
+
+                        </condition>
+
+                        y con esas caracteristicas solo existe el personaje que te he dicho.
+
+                    </li>
+
+                </condition>
+
+            </template>
+
+        </category>
+
+    </topic>
+
+</aiml>
